@@ -1,0 +1,9 @@
+[
+  { "week": 1, "weight_lb": 0.42, "feed_ideal_lb": 0.33 },
+  { "week": 2, "weight_lb": 1.06, "feed_ideal_lb": 0.99 },
+  { "week": 3, "weight_lb": 1.83, "feed_ideal_lb": 1.98 },
+  { "week": 4, "weight_lb": 2.82, "feed_ideal_lb": 3.19 },
+  { "week": 5, "weight_lb": 3.86, "feed_ideal_lb": 4.73 },
+  { "week": 6, "weight_lb": 5.10, "feed_ideal_lb": 6.61 },
+  { "week": 7, "weight_lb": 6.40, "feed_ideal_lb": 8.80 }
+]

@@ -1,0 +1,16 @@
+[
+  { "day": 1, "liters": 12 },
+  { "day": 10, "liters": 18 },
+  { "day": 20, "liters": 22 },
+  { "day": 30, "liters": 24 },
+  { "day": 40, "liters": 26 },
+  { "day": 50, "liters": 27 },
+  { "day": 60, "liters": 26 },
+  { "day": 80, "liters": 24 },
+  { "day": 100, "liters": 22 },
+  { "day": 150, "liters": 18 },
+  { "day": 200, "liters": 15 },
+  { "day": 250, "liters": 12 },
+  { "day": 300, "liters": 10 },
+  { "day": 305, "liters": 9 }
+]

@@ -1,0 +1,9 @@
+[
+  { "week": 18, "weight_lb": 3.30, "production_pct": 10, "feed_lb_day": 0.137 },
+  { "week": 19, "weight_lb": 3.37, "production_pct": 45, "feed_lb_day": 0.145 },
+  { "week": 20, "weight_lb": 3.42, "production_pct": 75, "feed_lb_day": 0.154 },
+  { "week": 21, "weight_lb": 3.50, "production_pct": 88, "feed_lb_day": 0.158 },
+  { "week": 22, "weight_lb": 3.55, "production_pct": 92, "feed_lb_day": 0.162 },
+  { "week": 23, "weight_lb": 3.60, "production_pct": 95, "feed_lb_day": 0.165 },
+  { "week": 24, "weight_lb": 3.65, "production_pct": 96, "feed_lb_day": 0.168 }
+]

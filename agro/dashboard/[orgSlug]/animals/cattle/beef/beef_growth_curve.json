@@ -1,0 +1,14 @@
+[
+  { "day": 1, "weight_kg": 180 },
+  { "day": 30, "weight_kg": 200 },
+  { "day": 60, "weight_kg": 225 },
+  { "day": 90, "weight_kg": 250 },
+  { "day": 120, "weight_kg": 280 },
+  { "day": 150, "weight_kg": 310 },
+  { "day": 180, "weight_kg": 340 },
+  { "day": 210, "weight_kg": 370 },
+  { "day": 240, "weight_kg": 400 },
+  { "day": 270, "weight_kg": 430 },
+  { "day": 300, "weight_kg": 455 },
+  { "day": 330, "weight_kg": 475 }
+]

@@ -1,0 +1,22 @@
+[
+  {"week":1, "weight_kg":6, "feed_ideal":400},
+  {"week":2, "weight_kg":9, "feed_ideal":600},
+  {"week":3, "weight_kg":13, "feed_ideal":800},
+  {"week":4, "weight_kg":18, "feed_ideal":1000},
+  {"week":5, "weight_kg":25, "feed_ideal":1200},
+  {"week":6, "weight_kg":32, "feed_ideal":1400},
+  {"week":7, "weight_kg":39, "feed_ideal":1600},
+  {"week":8, "weight_kg":47, "feed_ideal":1800},
+  {"week":9, "weight_kg":55, "feed_ideal":2000},
+  {"week":10, "weight_kg":64, "feed_ideal":2100},
+  {"week":11, "weight_kg":74, "feed_ideal":2200},
+  {"week":12, "weight_kg":84, "feed_ideal":2300},
+  {"week":13, "weight_kg":94, "feed_ideal":2400},
+  {"week":14, "weight_kg":104, "feed_ideal":2600},
+  {"week":15, "weight_kg":115, "feed_ideal":2700},
+  {"week":16, "weight_kg":126, "feed_ideal":2800},
+  {"week":17, "weight_kg":138, "feed_ideal":2900},
+  {"week":18, "weight_kg":150, "feed_ideal":3000},
+  {"week":19, "weight_kg":162, "feed_ideal":3100},
+  {"week":20, "weight_kg":175, "feed_ideal":3200}
+]

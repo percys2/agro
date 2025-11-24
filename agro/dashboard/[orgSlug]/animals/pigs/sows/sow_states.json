@@ -1,0 +1,8 @@
+[
+  {"state": "Empty", "days": 0},
+  {"state": "Weaned", "days": 0},
+  {"state": "Mated", "days": 0},
+  {"state": "Pregnant", "days": 115},
+  {"state": "Lactating", "days": 21},
+  {"state": "Gestation", "days": 115}
+]
