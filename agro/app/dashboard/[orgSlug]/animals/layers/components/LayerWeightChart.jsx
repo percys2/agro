@@ -1,5 +1,6 @@
 "use client";
 
+import "@/lib/chart";
 import { Line } from "react-chartjs-2";
 
 export default function LayerWeightChart({ weeks, weightReal, weightIdeal }) {

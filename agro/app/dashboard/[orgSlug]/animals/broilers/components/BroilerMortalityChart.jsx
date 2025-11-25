@@ -1,5 +1,6 @@
 "use client";
 
+import "@/lib/chart";
 import { Bar } from "react-chartjs-2";
 
 export default function BroilerMortalityChart({ weeks, deaths }) {
