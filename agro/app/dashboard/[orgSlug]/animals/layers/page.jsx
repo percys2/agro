@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getLayerFarm, getLayerCharts } from "@/src/modules/animals/layers/services";
+import { getLayerFarm, getLayerCharts } from "./services";
 
-import LayerKPI from "@/src/modules/animals/layers/components/LayerKPI";
-import LayerWeightChart from "@/src/modules/animals/layers/components/LayerWeightChart";
-import LayerPostureChart from "@/src/modules/animals/layers/components/LayerPostureChart";
-import LayerFeedChart from "@/src/modules/animals/layers/components/LayerFeedChart";
-import LayerTable from "@/src/modules/animals/layers/components/LayerTable";
-import ProductionForm from "@/src/modules/animals/layers/components/ProductionForm";
+import LayerKPI from "./components/LayerKPI";
+import LayerWeightChart from "./components/LayerWeightChart";
+import LayerPostureChart from "./components/LayerPostureChart";
+import LayerFeedChart from "./components/LayerFeedChart";
+import LayerTable from "./components/LayerTable";
+import ProductionForm from "./components/ProductionForm";
 
 export default function LayersPage({ params }) {
   const { orgSlug } = params;

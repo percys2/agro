@@ -1,0 +1,798 @@
+From 646a8a678817eba0c0ef02ca4281538fe23d315a Mon Sep 17 00:00:00 2001
+From: Devin AI <158243242+devin-ai-integration[bot]@users.noreply.github.com>
+Date: Mon, 24 Nov 2025 22:55:03 +0000
+Subject: [PATCH] Fix codebase structure and import paths
+
+- Remove stray 'B' character in useOrg.js
+- Rename services..js to services.js in layers folder
+- Add missing utility functions to layers/utils.js
+- Move dashboard folder under app/ for Next.js routing
+- Add jsconfig.json for path aliases
+- Fix all @/src/... import paths to use correct paths
+- Fix Tailwind config content globs
+- Rename sows/service.js to services.js for consistency
+- Add globals.css import to app/layout.jsx
+- Add @supabase/ssr dependency
+- Fix BroilerFeedCharts.jsx filename to BroilerFeedChart.jsx
+
+Co-Authored-By: percyscastillo2013@outlook.com <percyscastillo2@gmail.com>
+---
+ .../broilers/broiler_growth_curve.json        |  0
+ .../broilers/components/BroilerFeedChart.jsx} |  0
+ .../broilers/components/BroilerForm.jsx       |  0
+ .../broilers/components/BroilerGainChart.jsx  |  0
+ .../broilers/components/BroilerKPI.jsx        |  0
+ .../components/BroilerMortalityChart.jsx      |  0
+ .../broilers/components/BroilerTable.jsx      |  0
+ .../components/BroilerWeightChart.jsx         |  0
+ .../[orgSlug]/animals/broilers/page.jsx       | 16 +++---
+ .../[orgSlug]/animals/broilers/services.js    |  2 +-
+ .../[orgSlug]/animals/broilers/utils.js       |  0
+ .../cattle/beef/beef_growth_curve.json        |  0
+ .../cattle/beef/components/BeefForm.jsx       |  0
+ .../cattle/beef/components/BeefGainChart.jsx  |  0
+ .../cattle/beef/components/BeefKPI.jsx        |  0
+ .../cattle/beef/components/BeefTable.jsx      |  0
+ .../beef/components/BeefWeightChart.jsx       |  0
+ .../[orgSlug]/animals/cattle/beef/page.jsx    | 12 ++--
+ .../[orgSlug]/animals/cattle/beef/services.js |  2 +-
+ .../[orgSlug]/animals/cattle/beef/utils.js    |  0
+ .../cattle/dairy/components/DairyForm.jsx     |  0
+ .../cattle/dairy/components/DairyKPI.jsx      |  0
+ .../dairy/components/DairyLactationCurve.jsx  |  0
+ .../dairy/components/DairyMilkChart.jsx       |  0
+ .../cattle/dairy/components/DairyTable.jsx    |  0
+ .../animals/cattle/dairy/lactation_curve.json |  0
+ .../[orgSlug]/animals/cattle/dairy/page.jsx   |  8 +--
+ .../animals/cattle/dairy/services.js          |  2 +-
+ .../[orgSlug]/animals/cattle/dairy/utils.js   |  0
+ .../animals/layers/components/LayerCharts.jsx |  0
+ .../layers/components/LayerFeedChart.jsx      |  0
+ .../animals/layers/components/LayerKPI.jsx    |  0
+ .../layers/components/LayerPostureChart.jsx   |  0
+ .../animals/layers/components/LayerTable.jsx  |  0
+ .../layers/components/LayerWeightChart.jsx    |  0
+ .../layers/components/ProductionForm.jsx      |  0
+ .../animals/layers/layers_curve.json          |  0
+ .../[orgSlug]/animals/layers/page.jsx         | 14 ++---
+ .../[orgSlug]/animals/layers/services.js}     |  2 +-
+ .../[orgSlug]/animals/layers/utils.js         | 56 +++++++++++++++++++
+ .../animals/pigs/components/PigFeedChart.jsx  |  0
+ .../animals/pigs/components/PigForm.jsx       |  0
+ .../animals/pigs/components/PigKPI.jsx        |  0
+ .../animals/pigs/components/PigTable.jsx      |  0
+ .../pigs/components/PigWeightChart.jsx        |  0
+ .../dashboard/[orgSlug]/animals/pigs/page.jsx | 12 ++--
+ .../[orgSlug]/animals/pigs/services.js        |  2 +-
+ .../animals/pigs/sows/components/SowForm.jsx  |  0
+ .../sows/components/SowGestationChart.jsx     |  0
+ .../animals/pigs/sows/components/SowKPI.jsx   |  0
+ .../animals/pigs/sows/components/SowTable.jsx |  0
+ .../pigs/sows/components/SowTimeline.jsx      |  0
+ .../[orgSlug]/animals/pigs/sows/page.jsx      | 10 ++--
+ .../[orgSlug]/animals/pigs/sows/services.js}  |  2 +-
+ .../animals/pigs/sows/sow_states.json         |  0
+ .../[orgSlug]/animals/pigs/sows/utils.js      |  0
+ .../dashboard/[orgSlug]/animals/pigs/utils.js |  2 +-
+ agro/{ => app}/dashboard/[orgSlug]/layout.jsx |  4 +-
+ agro/{ => app}/dashboard/[orgSlug]/page.jsx   |  0
+ agro/app/layout.jsx                           |  2 +
+ .../[orgSlug]/animals/layers/utils.js         | 22 --------
+ agro/hooks/useOrg.js                          |  1 -
+ agro/jsconfig.json                            |  8 +++
+ agro/package-lock.json                        | 22 ++++++++
+ agro/package.json                             |  1 +
+ agro/tailwind.config.js                       |  7 ++-
+ 66 files changed, 138 insertions(+), 71 deletions(-)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/broilers/broiler_growth_curve.json (100%)
+ rename agro/{dashboard/[orgSlug]/animals/broilers/components/BroilerFeedCharts.jsx => app/dashboard/[orgSlug]/animals/broilers/components/BroilerFeedChart.jsx} (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/broilers/components/BroilerForm.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/broilers/components/BroilerGainChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/broilers/components/BroilerKPI.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/broilers/components/BroilerMortalityChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/broilers/components/BroilerTable.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/broilers/components/BroilerWeightChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/broilers/page.jsx (82%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/broilers/services.js (97%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/broilers/utils.js (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/beef/beef_growth_curve.json (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/beef/components/BeefForm.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/beef/components/BeefGainChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/beef/components/BeefKPI.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/beef/components/BeefTable.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/beef/components/BeefWeightChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/beef/page.jsx (81%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/beef/services.js (96%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/beef/utils.js (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyForm.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyKPI.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyLactationCurve.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyMilkChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyTable.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/dairy/lactation_curve.json (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/dairy/page.jsx (70%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/dairy/services.js (96%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/cattle/dairy/utils.js (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/layers/components/LayerCharts.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/layers/components/LayerFeedChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/layers/components/LayerKPI.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/layers/components/LayerPostureChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/layers/components/LayerTable.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/layers/components/LayerWeightChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/layers/components/ProductionForm.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/layers/layers_curve.json (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/layers/page.jsx (72%)
+ rename agro/{dashboard/[orgSlug]/animals/layers/services..js => app/dashboard/[orgSlug]/animals/layers/services.js} (98%)
+ create mode 100644 agro/app/dashboard/[orgSlug]/animals/layers/utils.js
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/components/PigFeedChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/components/PigForm.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/components/PigKPI.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/components/PigTable.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/components/PigWeightChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/page.jsx (74%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/services.js (96%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/sows/components/SowForm.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/sows/components/SowGestationChart.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/sows/components/SowKPI.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/sows/components/SowTable.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/sows/components/SowTimeline.jsx (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/sows/page.jsx (71%)
+ rename agro/{dashboard/[orgSlug]/animals/pigs/sows/service.js => app/dashboard/[orgSlug]/animals/pigs/sows/services.js} (93%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/sows/sow_states.json (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/sows/utils.js (100%)
+ rename agro/{ => app}/dashboard/[orgSlug]/animals/pigs/utils.js (94%)
+ rename agro/{ => app}/dashboard/[orgSlug]/layout.jsx (76%)
+ rename agro/{ => app}/dashboard/[orgSlug]/page.jsx (100%)
+ delete mode 100644 agro/dashboard/[orgSlug]/animals/layers/utils.js
+ create mode 100644 agro/jsconfig.json
+
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/broiler_growth_curve.json b/agro/app/dashboard/[orgSlug]/animals/broilers/broiler_growth_curve.json
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/broilers/broiler_growth_curve.json
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/broiler_growth_curve.json
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/components/BroilerFeedCharts.jsx b/agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerFeedChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/broilers/components/BroilerFeedCharts.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerFeedChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/components/BroilerForm.jsx b/agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerForm.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/broilers/components/BroilerForm.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerForm.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/components/BroilerGainChart.jsx b/agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerGainChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/broilers/components/BroilerGainChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerGainChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/components/BroilerKPI.jsx b/agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerKPI.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/broilers/components/BroilerKPI.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerKPI.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/components/BroilerMortalityChart.jsx b/agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerMortalityChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/broilers/components/BroilerMortalityChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerMortalityChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/components/BroilerTable.jsx b/agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerTable.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/broilers/components/BroilerTable.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerTable.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/components/BroilerWeightChart.jsx b/agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerWeightChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/broilers/components/BroilerWeightChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/components/BroilerWeightChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/page.jsx b/agro/app/dashboard/[orgSlug]/animals/broilers/page.jsx
+similarity index 82%
+rename from agro/dashboard/[orgSlug]/animals/broilers/page.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/page.jsx
+index 577e6ab..b2af264 100644
+--- a/agro/dashboard/[orgSlug]/animals/broilers/page.jsx
++++ b/agro/app/dashboard/[orgSlug]/animals/broilers/page.jsx
+@@ -5,16 +5,16 @@ import { useEffect, useState } from "react";
+ import { 
+   getBroilerFlocks, 
+   getBroilerCharts 
+-} from "@/src/modules/animals/broilers/services";
++} from "./services";
+ 
+ // Components
+-import BroilerKPI from "@/src/modules/animals/broilers/components/BroilerKPI";
+-import BroilerWeightChart from "@/src/modules/animals/broilers/components/BroilerWeightChart";
+-import BroilerFeedChart from "@/src/modules/animals/broilers/components/BroilerFeedChart";
+-import BroilerGainChart from "@/src/modules/animals/broilers/components/BroilerGainChart";
+-import BroilerMortalityChart from "@/src/modules/animals/broilers/components/BroilerMortalityChart";
+-import BroilerTable from "@/src/modules/animals/broilers/components/BroilerTable";
+-import BroilerForm from "@/src/modules/animals/broilers/components/BroilerForm";
++import BroilerKPI from "./components/BroilerKPI";
++import BroilerWeightChart from "./components/BroilerWeightChart";
++import BroilerFeedChart from "./components/BroilerFeedChart";
++import BroilerGainChart from "./components/BroilerGainChart";
++import BroilerMortalityChart from "./components/BroilerMortalityChart";
++import BroilerTable from "./components/BroilerTable";
++import BroilerForm from "./components/BroilerForm";
+ 
+ export default function BroilersPage({ params }) {
+   const { orgSlug } = params;
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/services.js b/agro/app/dashboard/[orgSlug]/animals/broilers/services.js
+similarity index 97%
+rename from agro/dashboard/[orgSlug]/animals/broilers/services.js
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/services.js
+index 0d018af..cd87ec1 100644
+--- a/agro/dashboard/[orgSlug]/animals/broilers/services.js
++++ b/agro/app/dashboard/[orgSlug]/animals/broilers/services.js
+@@ -1,4 +1,4 @@
+-import { supabaseBrowser } from "@/src/lib/supabase/client";
++import { supabaseBrowser } from "@/lib/supabase/client";
+ import {
+   idealWeight,
+   idealFeed,
+diff --git a/agro/dashboard/[orgSlug]/animals/broilers/utils.js b/agro/app/dashboard/[orgSlug]/animals/broilers/utils.js
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/broilers/utils.js
+rename to agro/app/dashboard/[orgSlug]/animals/broilers/utils.js
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/beef/beef_growth_curve.json b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/beef_growth_curve.json
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/beef/beef_growth_curve.json
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/beef/beef_growth_curve.json
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/beef/components/BeefForm.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/components/BeefForm.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/beef/components/BeefForm.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/beef/components/BeefForm.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/beef/components/BeefGainChart.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/components/BeefGainChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/beef/components/BeefGainChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/beef/components/BeefGainChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/beef/components/BeefKPI.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/components/BeefKPI.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/beef/components/BeefKPI.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/beef/components/BeefKPI.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/beef/components/BeefTable.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/components/BeefTable.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/beef/components/BeefTable.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/beef/components/BeefTable.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/beef/components/BeefWeightChart.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/components/BeefWeightChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/beef/components/BeefWeightChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/beef/components/BeefWeightChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/beef/page.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/page.jsx
+similarity index 81%
+rename from agro/dashboard/[orgSlug]/animals/cattle/beef/page.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/beef/page.jsx
+index 96638ef..ce21bf1 100644
+--- a/agro/dashboard/[orgSlug]/animals/cattle/beef/page.jsx
++++ b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/page.jsx
+@@ -2,14 +2,14 @@
+ 
+ import { useEffect, useState } from "react";
+ 
+-import { getBeefAnimals, getBeefCharts } from "@/src/modules/animals/cattle/beef/services";
++import { getBeefAnimals, getBeefCharts } from "./services";
+ 
+ // Components
+-import BeefKPI from "@/src/modules/animals/cattle/beef/components/BeefKPI";
+-import BeefWeightChart from "@/src/modules/animals/cattle/beef/components/BeefWeightChart";
+-import BeefGainChart from "@/src/modules/animals/cattle/beef/components/BeefGainChart";
+-import BeefTable from "@/src/modules/animals/cattle/beef/components/BeefTable";
+-import BeefForm from "@/src/modules/animals/cattle/beef/components/BeefForm";
++import BeefKPI from "./components/BeefKPI";
++import BeefWeightChart from "./components/BeefWeightChart";
++import BeefGainChart from "./components/BeefGainChart";
++import BeefTable from "./components/BeefTable";
++import BeefForm from "./components/BeefForm";
+ 
+ export default function BeefPage({ params }) {
+   const { orgSlug } = params;
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/beef/services.js b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/services.js
+similarity index 96%
+rename from agro/dashboard/[orgSlug]/animals/cattle/beef/services.js
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/beef/services.js
+index ed0bd41..8e90547 100644
+--- a/agro/dashboard/[orgSlug]/animals/cattle/beef/services.js
++++ b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/services.js
+@@ -1,4 +1,4 @@
+-import { supabaseBrowser } from "@/src/lib/supabase/client";
++import { supabaseBrowser } from "@/lib/supabase/client";
+ import {
+   idealWeight,
+   calculateADG,
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/beef/utils.js b/agro/app/dashboard/[orgSlug]/animals/cattle/beef/utils.js
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/beef/utils.js
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/beef/utils.js
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyForm.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyForm.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyForm.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyForm.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyKPI.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyKPI.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyKPI.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyKPI.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyLactationCurve.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyLactationCurve.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyLactationCurve.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyLactationCurve.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyMilkChart.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyMilkChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyMilkChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyMilkChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyTable.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyTable.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyTable.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/dairy/components/DairyTable.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/dairy/lactation_curve.json b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/lactation_curve.json
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/dairy/lactation_curve.json
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/dairy/lactation_curve.json
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/dairy/page.jsx b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/page.jsx
+similarity index 70%
+rename from agro/dashboard/[orgSlug]/animals/cattle/dairy/page.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/dairy/page.jsx
+index c1265c4..8000706 100644
+--- a/agro/dashboard/[orgSlug]/animals/cattle/dairy/page.jsx
++++ b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/page.jsx
+@@ -1,11 +1,11 @@
+ "use client";
+ 
+ import { useEffect, useState } from "react";
+-import { getDairyFarm, getDairyCharts } from "@/src/modules/animals/cattle/dairy/services";
++import { getDairyFarm, getDairyCharts } from "./services";
+ 
+-import DairyKPI from "@/src/modules/animals/cattle/dairy/components/DairyKPI";
+-import DairyMilkChart from "@/src/modules/animals/cattle/dairy/components/DairyMilkChart";
+-import DairyForm from "@/src/modules/animals/cattle/dairy/components/DairyForm";
++import DairyKPI from "./components/DairyKPI";
++import DairyMilkChart from "./components/DairyMilkChart";
++import DairyForm from "./components/DairyForm";
+ 
+ export default function DairyPage({ params }) {
+   const { orgSlug } = params;
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/dairy/services.js b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/services.js
+similarity index 96%
+rename from agro/dashboard/[orgSlug]/animals/cattle/dairy/services.js
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/dairy/services.js
+index f229089..159ebf9 100644
+--- a/agro/dashboard/[orgSlug]/animals/cattle/dairy/services.js
++++ b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/services.js
+@@ -1,4 +1,4 @@
+-import { supabaseBrowser } from "@/src/lib/supabase/client";
++import { supabaseBrowser } from "@/lib/supabase/client";
+ import {
+   idealMilk,
+   projected305,
+diff --git a/agro/dashboard/[orgSlug]/animals/cattle/dairy/utils.js b/agro/app/dashboard/[orgSlug]/animals/cattle/dairy/utils.js
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/cattle/dairy/utils.js
+rename to agro/app/dashboard/[orgSlug]/animals/cattle/dairy/utils.js
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/components/LayerCharts.jsx b/agro/app/dashboard/[orgSlug]/animals/layers/components/LayerCharts.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/layers/components/LayerCharts.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/layers/components/LayerCharts.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/components/LayerFeedChart.jsx b/agro/app/dashboard/[orgSlug]/animals/layers/components/LayerFeedChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/layers/components/LayerFeedChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/layers/components/LayerFeedChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/components/LayerKPI.jsx b/agro/app/dashboard/[orgSlug]/animals/layers/components/LayerKPI.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/layers/components/LayerKPI.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/layers/components/LayerKPI.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/components/LayerPostureChart.jsx b/agro/app/dashboard/[orgSlug]/animals/layers/components/LayerPostureChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/layers/components/LayerPostureChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/layers/components/LayerPostureChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/components/LayerTable.jsx b/agro/app/dashboard/[orgSlug]/animals/layers/components/LayerTable.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/layers/components/LayerTable.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/layers/components/LayerTable.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/components/LayerWeightChart.jsx b/agro/app/dashboard/[orgSlug]/animals/layers/components/LayerWeightChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/layers/components/LayerWeightChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/layers/components/LayerWeightChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/components/ProductionForm.jsx b/agro/app/dashboard/[orgSlug]/animals/layers/components/ProductionForm.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/layers/components/ProductionForm.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/layers/components/ProductionForm.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/layers_curve.json b/agro/app/dashboard/[orgSlug]/animals/layers/layers_curve.json
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/layers/layers_curve.json
+rename to agro/app/dashboard/[orgSlug]/animals/layers/layers_curve.json
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/page.jsx b/agro/app/dashboard/[orgSlug]/animals/layers/page.jsx
+similarity index 72%
+rename from agro/dashboard/[orgSlug]/animals/layers/page.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/layers/page.jsx
+index a74935e..6559773 100644
+--- a/agro/dashboard/[orgSlug]/animals/layers/page.jsx
++++ b/agro/app/dashboard/[orgSlug]/animals/layers/page.jsx
+@@ -1,14 +1,14 @@
+ "use client";
+ 
+ import { useEffect, useState } from "react";
+-import { getLayerFarm, getLayerCharts } from "@/src/modules/animals/layers/services";
++import { getLayerFarm, getLayerCharts } from "./services";
+ 
+-import LayerKPI from "@/src/modules/animals/layers/components/LayerKPI";
+-import LayerWeightChart from "@/src/modules/animals/layers/components/LayerWeightChart";
+-import LayerPostureChart from "@/src/modules/animals/layers/components/LayerPostureChart";
+-import LayerFeedChart from "@/src/modules/animals/layers/components/LayerFeedChart";
+-import LayerTable from "@/src/modules/animals/layers/components/LayerTable";
+-import ProductionForm from "@/src/modules/animals/layers/components/ProductionForm";
++import LayerKPI from "./components/LayerKPI";
++import LayerWeightChart from "./components/LayerWeightChart";
++import LayerPostureChart from "./components/LayerPostureChart";
++import LayerFeedChart from "./components/LayerFeedChart";
++import LayerTable from "./components/LayerTable";
++import ProductionForm from "./components/ProductionForm";
+ 
+ export default function LayersPage({ params }) {
+   const { orgSlug } = params;
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/services..js b/agro/app/dashboard/[orgSlug]/animals/layers/services.js
+similarity index 98%
+rename from agro/dashboard/[orgSlug]/animals/layers/services..js
+rename to agro/app/dashboard/[orgSlug]/animals/layers/services.js
+index 9dd47e2..1c7875c 100644
+--- a/agro/dashboard/[orgSlug]/animals/layers/services..js
++++ b/agro/app/dashboard/[orgSlug]/animals/layers/services.js
+@@ -1,4 +1,4 @@
+-import { supabaseBrowser } from "@/src/lib/supabase/client";
++import { supabaseBrowser } from "@/lib/supabase/client";
+ import {
+   idealProductionCurve,
+   idealFeedIntake,
+diff --git a/agro/app/dashboard/[orgSlug]/animals/layers/utils.js b/agro/app/dashboard/[orgSlug]/animals/layers/utils.js
+new file mode 100644
+index 0000000..02c0264
+--- /dev/null
++++ b/agro/app/dashboard/[orgSlug]/animals/layers/utils.js
+@@ -0,0 +1,56 @@
++import curve from "./layers_curve.json";
++
++export function idealWeight(week) {
++  const row = curve.find(r => r.week === week);
++  return row ? row.weight_lb : null;
++}
++
++export function idealFeed(week) {
++  const row = curve.find(r => r.week === week);
++  return row ? row.feed_lb_day : null;
++}
++
++export function idealProduction(week) {
++  const row = curve.find(r => r.week === week);
++  return row ? row.production_pct : null;
++}
++
++export function compareStatus(real, ideal) {
++  if (real >= ideal * 0.95) return "green";
++  if (real >= ideal * 0.80) return "yellow";
++  return "red";
++}
++
++export function idealProductionCurve(week) {
++  const row = curve.find(r => r.week === week);
++  return row ? row.production_pct : null;
++}
++
++export function idealFeedIntake(week) {
++  const row = curve.find(r => r.week === week);
++  return row ? row.feed_lb_day : null;
++}
++
++export function idealWeightCurve(week) {
++  const row = curve.find(r => r.week === week);
++  return row ? row.weight_lb : null;
++}
++
++export function calculateProductionRate(real, ideal) {
++  if (!ideal || ideal <= 0) return 0;
++  return Number(((real / ideal) * 100).toFixed(2));
++}
++
++export function compareConsumption(real, ideal) {
++  if (!ideal) return "neutral";
++  const pct = (real / ideal) * 100;
++  if (pct >= 95 && pct <= 105) return "green";
++  if (pct >= 85 && pct <= 115) return "yellow";
++  return "red";
++}
++
++export function indicatorLabel(color) {
++  if (color === "green") return "Normal";
++  if (color === "yellow") return "Atención";
++  return "Crítico";
++}
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/components/PigFeedChart.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/components/PigFeedChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/components/PigFeedChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/components/PigFeedChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/components/PigForm.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/components/PigForm.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/components/PigForm.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/components/PigForm.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/components/PigKPI.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/components/PigKPI.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/components/PigKPI.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/components/PigKPI.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/components/PigTable.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/components/PigTable.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/components/PigTable.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/components/PigTable.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/components/PigWeightChart.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/components/PigWeightChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/components/PigWeightChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/components/PigWeightChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/page.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/page.jsx
+similarity index 74%
+rename from agro/dashboard/[orgSlug]/animals/pigs/page.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/page.jsx
+index 6d44dc7..34e2bed 100644
+--- a/agro/dashboard/[orgSlug]/animals/pigs/page.jsx
++++ b/agro/app/dashboard/[orgSlug]/animals/pigs/page.jsx
+@@ -1,13 +1,13 @@
+ "use client";
+ 
+ import { useEffect, useState } from "react";
+-import { getPigFarm, getPigCharts } from "@/src/modules/animals/pigs/services";
++import { getPigFarm, getPigCharts } from "./services";
+ 
+-import PigKPI from "@/src/modules/animals/pigs/components/PigKPI";
+-import PigWeightChart from "@/src/modules/animals/pigs/components/PigWeightChart";
+-import PigFeedChart from "@/src/modules/animals/pigs/components/PigFeedChart";
+-import PigTable from "@/src/modules/animals/pigs/components/PigTable";
+-import PigForm from "@/src/modules/animals/pigs/components/PigForm";
++import PigKPI from "./components/PigKPI";
++import PigWeightChart from "./components/PigWeightChart";
++import PigFeedChart from "./components/PigFeedChart";
++import PigTable from "./components/PigTable";
++import PigForm from "./components/PigForm";
+ 
+ export default function PigsPage({ params }) {
+   const { orgSlug } = params;
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/services.js b/agro/app/dashboard/[orgSlug]/animals/pigs/services.js
+similarity index 96%
+rename from agro/dashboard/[orgSlug]/animals/pigs/services.js
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/services.js
+index 3d771bf..107682c 100644
+--- a/agro/dashboard/[orgSlug]/animals/pigs/services.js
++++ b/agro/app/dashboard/[orgSlug]/animals/pigs/services.js
+@@ -1,4 +1,4 @@
+-import { supabaseBrowser } from "@/src/lib/supabase/client";
++import { supabaseBrowser } from "@/lib/supabase/client";
+ import {
+   idealWeight,
+   idealFeed,
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/sows/components/SowForm.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/components/SowForm.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/sows/components/SowForm.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/sows/components/SowForm.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/sows/components/SowGestationChart.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/components/SowGestationChart.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/sows/components/SowGestationChart.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/sows/components/SowGestationChart.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/sows/components/SowKPI.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/components/SowKPI.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/sows/components/SowKPI.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/sows/components/SowKPI.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/sows/components/SowTable.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/components/SowTable.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/sows/components/SowTable.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/sows/components/SowTable.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/sows/components/SowTimeline.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/components/SowTimeline.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/sows/components/SowTimeline.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/sows/components/SowTimeline.jsx
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/sows/page.jsx b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/page.jsx
+similarity index 71%
+rename from agro/dashboard/[orgSlug]/animals/pigs/sows/page.jsx
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/sows/page.jsx
+index 50d1342..f8d1f77 100644
+--- a/agro/dashboard/[orgSlug]/animals/pigs/sows/page.jsx
++++ b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/page.jsx
+@@ -1,12 +1,12 @@
+ "use client";
+ 
+ import { useEffect, useState } from "react";
+-import { getSows, getSowEvents } from "@/src/modules/animals/pigs/sows/services";
++import { getSows, getSowEvents } from "./services";
+ 
+-import SowKPI from "@/src/modules/animals/pigs/sows/components/SowKPI";
+-import SowTable from "@/src/modules/animals/pigs/sows/components/SowTable";
+-import SowTimeline from "@/src/modules/animals/pigs/sows/components/SowTimeline";
+-import SowForm from "@/src/modules/animals/pigs/sows/components/SowForm";
++import SowKPI from "./components/SowKPI";
++import SowTable from "./components/SowTable";
++import SowTimeline from "./components/SowTimeline";
++import SowForm from "./components/SowForm";
+ 
+ export default function SowsPage({ params }) {
+   const { orgSlug } = params;
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/sows/service.js b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/services.js
+similarity index 93%
+rename from agro/dashboard/[orgSlug]/animals/pigs/sows/service.js
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/sows/services.js
+index dd8514f..3cd1438 100644
+--- a/agro/dashboard/[orgSlug]/animals/pigs/sows/service.js
++++ b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/services.js
+@@ -1,4 +1,4 @@
+-import { supabaseBrowser } from "@/src/lib/supabase/client";
++import { supabaseBrowser } from "@/lib/supabase/client";
+ import { expectedFarrowDate, expectedWeanDate, sowStatus } from "./utils";
+ 
+ export async function getSows(orgSlug) {
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/sows/sow_states.json b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/sow_states.json
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/sows/sow_states.json
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/sows/sow_states.json
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/sows/utils.js b/agro/app/dashboard/[orgSlug]/animals/pigs/sows/utils.js
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/animals/pigs/sows/utils.js
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/sows/utils.js
+diff --git a/agro/dashboard/[orgSlug]/animals/pigs/utils.js b/agro/app/dashboard/[orgSlug]/animals/pigs/utils.js
+similarity index 94%
+rename from agro/dashboard/[orgSlug]/animals/pigs/utils.js
+rename to agro/app/dashboard/[orgSlug]/animals/pigs/utils.js
+index cc5248c..8fef034 100644
+--- a/agro/dashboard/[orgSlug]/animals/pigs/utils.js
++++ b/agro/app/dashboard/[orgSlug]/animals/pigs/utils.js
+@@ -1,4 +1,4 @@
+-import curve from "@/src/data/pigs_growth_curve.json";
++import curve from "@/data/pigs_growth_curve.json";
+ 
+ export function idealWeight(week) {
+   const row = curve.find(r => r.week === week);
+diff --git a/agro/dashboard/[orgSlug]/layout.jsx b/agro/app/dashboard/[orgSlug]/layout.jsx
+similarity index 76%
+rename from agro/dashboard/[orgSlug]/layout.jsx
+rename to agro/app/dashboard/[orgSlug]/layout.jsx
+index 3089ed9..468ac12 100644
+--- a/agro/dashboard/[orgSlug]/layout.jsx
++++ b/agro/app/dashboard/[orgSlug]/layout.jsx
+@@ -1,5 +1,5 @@
+-import Sidebar from "@/src/components/layout/Sidebar";
+-import Navbar from "@/src/components/layout/Navbar";
++import Sidebar from "@/components/layout/Sidebar";
++import Navbar from "@/components/layout/Navbar";
+ 
+ export default function OrgLayout({ children, params }) {
+   const orgSlug = params.orgSlug;
+diff --git a/agro/dashboard/[orgSlug]/page.jsx b/agro/app/dashboard/[orgSlug]/page.jsx
+similarity index 100%
+rename from agro/dashboard/[orgSlug]/page.jsx
+rename to agro/app/dashboard/[orgSlug]/page.jsx
+diff --git a/agro/app/layout.jsx b/agro/app/layout.jsx
+index 5c07a49..b13d400 100644
+--- a/agro/app/layout.jsx
++++ b/agro/app/layout.jsx
+@@ -1,3 +1,5 @@
++import "./globals.css";
++
+ export const metadata = {
+   title: "Agro SaaS",
+   description: "Plataforma de gestión agropecuaria",
+diff --git a/agro/dashboard/[orgSlug]/animals/layers/utils.js b/agro/dashboard/[orgSlug]/animals/layers/utils.js
+deleted file mode 100644
+index 68f3bca..0000000
+--- a/agro/dashboard/[orgSlug]/animals/layers/utils.js
++++ /dev/null
+@@ -1,22 +0,0 @@
+-import curve from "./layers_curve.json";
+-
+-export function idealWeight(week) {
+-  const row = curve.find(r => r.week === week);
+-  return row ? row.weight_lb : null;
+-}
+-
+-export function idealFeed(week) {
+-  const row = curve.find(r => r.week === week);
+-  return row ? row.feed_lb_day : null;
+-}
+-
+-export function idealProduction(week) {
+-  const row = curve.find(r => r.week === week);
+-  return row ? row.production_pct : null;
+-}
+-
+-export function compareStatus(real, ideal) {
+-  if (real >= ideal * 0.95) return "green";
+-  if (real >= ideal * 0.80) return "yellow";
+-  return "red";
+-}
+diff --git a/agro/hooks/useOrg.js b/agro/hooks/useOrg.js
+index f6b41b6..fab0d2d 100644
+--- a/agro/hooks/useOrg.js
++++ b/agro/hooks/useOrg.js
+@@ -3,4 +3,3 @@
+ export default function useOrg(orgSlug) {
+   return orgSlug;
+ }
+-B
+\ No newline at end of file
+diff --git a/agro/jsconfig.json b/agro/jsconfig.json
+new file mode 100644
+index 0000000..9c33383
+--- /dev/null
++++ b/agro/jsconfig.json
+@@ -0,0 +1,8 @@
++{
++  "compilerOptions": {
++    "baseUrl": ".",
++    "paths": {
++      "@/*": ["./*"]
++    }
++  }
++}
+diff --git a/agro/package-lock.json b/agro/package-lock.json
+index 5ec8e20..b3e6c26 100644
+--- a/agro/package-lock.json
++++ b/agro/package-lock.json
+@@ -8,6 +8,7 @@
+       "name": "erp-agro-saas",
+       "version": "1.0.0",
+       "dependencies": {
++        "@supabase/ssr": "^0.7.0",
+         "@supabase/supabase-js": "^2.42.0",
+         "chart.js": "^4.4.1",
+         "next": "14.1.0",
+@@ -560,6 +561,18 @@
+         "node": ">=20.0.0"
+       }
+     },
++    "node_modules/@supabase/ssr": {
++      "version": "0.7.0",
++      "resolved": "https://registry.npmjs.org/@supabase/ssr/-/ssr-0.7.0.tgz",
++      "integrity": "sha512-G65t5EhLSJ5c8hTCcXifSL9Q/ZRXvqgXeNo+d3P56f4U1IxwTqjB64UfmfixvmMcjuxnq2yGqEWVJqUcO+AzAg==",
++      "license": "MIT",
++      "dependencies": {
++        "cookie": "^1.0.2"
++      },
++      "peerDependencies": {
++        "@supabase/supabase-js": "^2.43.4"
++      }
++    },
+     "node_modules/@supabase/storage-js": {
+       "version": "2.84.0",
+       "resolved": "https://registry.npmjs.org/@supabase/storage-js/-/storage-js-2.84.0.tgz",
+@@ -1720,6 +1733,15 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/cookie": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/cookie/-/cookie-1.0.2.tgz",
++      "integrity": "sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==",
++      "license": "MIT",
++      "engines": {
++        "node": ">=18"
++      }
++    },
+     "node_modules/cross-spawn": {
+       "version": "7.0.6",
+       "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
+diff --git a/agro/package.json b/agro/package.json
+index e39ad2f..9e74824 100644
+--- a/agro/package.json
++++ b/agro/package.json
+@@ -9,6 +9,7 @@
+     "lint": "next lint"
+   },
+   "dependencies": {
++    "@supabase/ssr": "^0.7.0",
+     "@supabase/supabase-js": "^2.42.0",
+     "chart.js": "^4.4.1",
+     "next": "14.1.0",
+diff --git a/agro/tailwind.config.js b/agro/tailwind.config.js
+index cdde27f..e6a1f3e 100644
+--- a/agro/tailwind.config.js
++++ b/agro/tailwind.config.js
+@@ -1,9 +1,10 @@
+ /** @type {import('tailwindcss').Config} */
+ module.exports = {
+   content: [
+-    "./src/app/**/*.{js,ts,jsx,tsx}",
+-    "./src/components/**/*.{js,ts,jsx,tsx}",
+-    "./src/modules/**/*.{js,ts,jsx,tsx}"
++    "./app/**/*.{js,ts,jsx,tsx}",
++    "./components/**/*.{js,ts,jsx,tsx}",
++    "./hooks/**/*.{js,ts,jsx,tsx}",
++    "./lib/**/*.{js,ts,jsx,tsx}"
+   ],
+   theme: {
+     extend: {},
+-- 
+2.34.1
+

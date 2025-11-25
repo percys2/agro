@@ -1,4 +1,4 @@
-import curve from "@/src/data/pigs_growth_curve.json";
+import curve from "@/data/pigs_growth_curve.json";
 
 export function idealWeight(week) {
   const row = curve.find(r => r.week === week);

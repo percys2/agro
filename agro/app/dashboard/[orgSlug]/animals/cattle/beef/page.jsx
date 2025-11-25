@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 
-import { getBeefAnimals, getBeefCharts } from "@/src/modules/animals/cattle/beef/services";
+import { getBeefAnimals, getBeefCharts } from "./services";
 
 // Components
-import BeefKPI from "@/src/modules/animals/cattle/beef/components/BeefKPI";
-import BeefWeightChart from "@/src/modules/animals/cattle/beef/components/BeefWeightChart";
-import BeefGainChart from "@/src/modules/animals/cattle/beef/components/BeefGainChart";
-import BeefTable from "@/src/modules/animals/cattle/beef/components/BeefTable";
-import BeefForm from "@/src/modules/animals/cattle/beef/components/BeefForm";
+import BeefKPI from "./components/BeefKPI";
+import BeefWeightChart from "./components/BeefWeightChart";
+import BeefGainChart from "./components/BeefGainChart";
+import BeefTable from "./components/BeefTable";
+import BeefForm from "./components/BeefForm";
 
 export default function BeefPage({ params }) {
   const { orgSlug } = params;

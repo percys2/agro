@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getPigFarm, getPigCharts } from "@/src/modules/animals/pigs/services";
+import { getPigFarm, getPigCharts } from "./services";
 
-import PigKPI from "@/src/modules/animals/pigs/components/PigKPI";
-import PigWeightChart from "@/src/modules/animals/pigs/components/PigWeightChart";
-import PigFeedChart from "@/src/modules/animals/pigs/components/PigFeedChart";
-import PigTable from "@/src/modules/animals/pigs/components/PigTable";
-import PigForm from "@/src/modules/animals/pigs/components/PigForm";
+import PigKPI from "./components/PigKPI";
+import PigWeightChart from "./components/PigWeightChart";
+import PigFeedChart from "./components/PigFeedChart";
+import PigTable from "./components/PigTable";
+import PigForm from "./components/PigForm";
 
 export default function PigsPage({ params }) {
   const { orgSlug } = params;

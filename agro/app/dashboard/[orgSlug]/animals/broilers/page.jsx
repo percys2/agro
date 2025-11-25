@@ -5,16 +5,16 @@ import { useEffect, useState } from "react";
 import { 
   getBroilerFlocks, 
   getBroilerCharts 
-} from "@/src/modules/animals/broilers/services";
+} from "./services";
 
 // Components
-import BroilerKPI from "@/src/modules/animals/broilers/components/BroilerKPI";
-import BroilerWeightChart from "@/src/modules/animals/broilers/components/BroilerWeightChart";
-import BroilerFeedChart from "@/src/modules/animals/broilers/components/BroilerFeedChart";
-import BroilerGainChart from "@/src/modules/animals/broilers/components/BroilerGainChart";
-import BroilerMortalityChart from "@/src/modules/animals/broilers/components/BroilerMortalityChart";
-import BroilerTable from "@/src/modules/animals/broilers/components/BroilerTable";
-import BroilerForm from "@/src/modules/animals/broilers/components/BroilerForm";
+import BroilerKPI from "./components/BroilerKPI";
+import BroilerWeightChart from "./components/BroilerWeightChart";
+import BroilerFeedChart from "./components/BroilerFeedChart";
+import BroilerGainChart from "./components/BroilerGainChart";
+import BroilerMortalityChart from "./components/BroilerMortalityChart";
+import BroilerTable from "./components/BroilerTable";
+import BroilerForm from "./components/BroilerForm";
 
 export default function BroilersPage({ params }) {
   const { orgSlug } = params;

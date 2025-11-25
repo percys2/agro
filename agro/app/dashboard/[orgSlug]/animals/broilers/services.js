@@ -1,4 +1,4 @@
-import { supabaseBrowser } from "@/src/lib/supabase/client";
+import { supabaseBrowser } from "@/lib/supabase/client";
 import {
   idealWeight,
   idealFeed,

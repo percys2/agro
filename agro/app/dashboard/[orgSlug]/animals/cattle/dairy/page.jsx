@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getDairyFarm, getDairyCharts } from "@/src/modules/animals/cattle/dairy/services";
+import { getDairyFarm, getDairyCharts } from "./services";
 
-import DairyKPI from "@/src/modules/animals/cattle/dairy/components/DairyKPI";
-import DairyMilkChart from "@/src/modules/animals/cattle/dairy/components/DairyMilkChart";
-import DairyForm from "@/src/modules/animals/cattle/dairy/components/DairyForm";
+import DairyKPI from "./components/DairyKPI";
+import DairyMilkChart from "./components/DairyMilkChart";
+import DairyForm from "./components/DairyForm";
 
 export default function DairyPage({ params }) {
   const { orgSlug } = params;

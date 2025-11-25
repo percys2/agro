@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getSows, getSowEvents } from "@/src/modules/animals/pigs/sows/services";
+import { getSows, getSowEvents } from "./services";
 
-import SowKPI from "@/src/modules/animals/pigs/sows/components/SowKPI";
-import SowTable from "@/src/modules/animals/pigs/sows/components/SowTable";
-import SowTimeline from "@/src/modules/animals/pigs/sows/components/SowTimeline";
-import SowForm from "@/src/modules/animals/pigs/sows/components/SowForm";
+import SowKPI from "./components/SowKPI";
+import SowTable from "./components/SowTable";
+import SowTimeline from "./components/SowTimeline";
+import SowForm from "./components/SowForm";
 
 export default function SowsPage({ params }) {
   const { orgSlug } = params;

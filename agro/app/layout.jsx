@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: "Agro SaaS",
   description: "Plataforma de gestión agropecuaria",

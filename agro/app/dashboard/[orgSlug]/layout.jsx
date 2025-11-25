@@ -1,5 +1,5 @@
-import Sidebar from "@/src/components/layout/Sidebar";
-import Navbar from "@/src/components/layout/Navbar";
+import Sidebar from "@/components/layout/Sidebar";
+import Navbar from "@/components/layout/Navbar";
 
 export default function OrgLayout({ children, params }) {
   const orgSlug = params.orgSlug;
